@@ -2,8 +2,6 @@
 
 Objetivo: Revisar testes unitários e assertivas.
 
-Data para entrega: 25/09 23h59.
-
 ## Exercício 1 (primeiro e último)
 Escrever testes para as funções `len()` e `sorted()` (funções padrão do Python). Os testes devem cobrir cenários com entradas válidas e inválidas.
 

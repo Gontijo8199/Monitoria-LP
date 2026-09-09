@@ -6,7 +6,7 @@ Entrega: crie um arquivo `respostas.py` na pasta raiz do repositório, contendo 
 funções relativas aos dois primeiros exercícios. A função relativa ao exercício
 um deverá se chamar `exercicio1` e a relativa ao exercício dois deverá se chamar
 `exercicio2`. O arquivo criado para o exercício 3 deverá estar na raiz do
-respositório. O prazo de entrega é dia 12/09, 11h59.
+respositório.
 
 ## Exercício 1: Validação de Entrada e Cálculo de Norma Vetorial
 

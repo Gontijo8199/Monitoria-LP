@@ -2,10 +2,6 @@
 
 **Objetivo Geral:** Aplicar conceitos fundamentais de Programação Orientada a Objetos (Herança, Polimorfismo, Encapsulamento e Composição) para construir o motor de um sistema de portfólio profissional em Python.
 
-**Prazo:** 23/11
-
-**Forma de entrega:** Repositório no GitHub Classroom.
-
 ## Organização dos arquivos
 
   * `src/`: Pasta (módulo) contendo todo o código-fonte da implementação (suas classes, interfaces/classes abstratas).

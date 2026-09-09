@@ -2,10 +2,6 @@
 
 **Objetivo Geral:** Usar a biblioteca `pandas` para realizar limpeza, transformação, filtragem e análise de um conjunto de dados.
 
-**Prazo:** 29/10
-
-**Forma de entrega:** Repositório no GitHub Classroom.
-
 ## Organização dos arquivos e questões
 
 Todas as funções pedidas devem ser implementadas em um único arquivo `respostas.py`, que deve estar na **raiz do repositório**.

@@ -2,10 +2,6 @@
 
 **Objetivo Geral:** Revisar Funções (funções como objetos, funções anônimas, closures e decoradores) e tratamento de erros.
 
-**Prazo:** 15/09
-
-**Forma de entrega:** Repositório no GitHub Classroom.
-
 ## Organização dos arquivos e questões
 
 Todas as funções pedidas devem ser implementadas em um único arquivo `respostas.py`.
