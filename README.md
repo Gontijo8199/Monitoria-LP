@@ -1,7 +1,8 @@
 # Linguagens de programação - listas de exercícios
 
-Esta pasta contém as listas aplicadas na matéria em 2024 e 2025. Além das
-listas, serão liberados simulados para serem feitos durante as monitorias.
+Esta pasta contém as listas aplicadas na matéria em 2024 e 2025. Além das listas, também serão disponibilizadas listas de revisão para serem feitas durante as monitorias ou antes das provas.
+
+> **Atenção:** o conteúdo pode variar ligeiramente entre diferentes períodos. Algumas questões podem abordar tópicos que não foram cobrados no período atual. Use as listas como material de estudo, mas tenha como referência o conteúdo trabalhado em sala.
 
 ## Sugestão de ordem de resolução
 
@@ -22,8 +23,7 @@ listas, serão liberados simulados para serem feitos durante as monitorias.
 
 ## Entrega
 
-As listas não contam como nota, e sim como material de estudo. Para obter
-feedback e correção para uma lista:
+As listas não contam como nota, e sim como material de estudo. Para obter feedback e correção para uma lista:
 
 - Coloque sua solução em um repositório do GitHub;
 - Envie um email com o assunto "Resolução listas de exercícios - Linguagens 
