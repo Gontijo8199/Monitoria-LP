@@ -2,6 +2,12 @@
 
 Objetivos: revisar laços de repetição, condicionais e funções.
 
+**Todas as funções feitas para a lista devem conter**:
+
+- Docstrings explicativas
+- Typehints que indiquem os tipos de entrada e retorno das funções
+- Comentários que expliquem a lógica, quando necessários
+
 ## Exercício 1
 
 Seja $p$ o perimetro de um triângulo retângulo com lados $\\{a, b, c\\}$

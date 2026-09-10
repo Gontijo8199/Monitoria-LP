@@ -8,6 +8,12 @@ um deverá se chamar `exercicio1` e a relativa ao exercício dois deverá se cha
 `exercicio2`. O arquivo criado para o exercício 3 deverá estar na raiz do
 respositório.
 
+**Todas as funções feitas para a lista devem conter**:
+
+- Docstrings explicativas
+- Typehints que indiquem os tipos de entrada e retorno das funções
+- Comentários que expliquem a lógica, quando necessários
+
 ## Exercício 1: Validação de Entrada e Cálculo de Norma Vetorial
 
 Implemente uma função em Python que receba como entrada um vetor (tupla de
