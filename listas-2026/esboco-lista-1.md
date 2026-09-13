@@ -130,7 +130,8 @@ Regras de validação:
 - Se `origem` ou `destino` não estiverem entre as unidades válidas (`"C"`, `"F"`, `"K"`), levante `ValueError`.
 - Se `valor` não for `int` nem `float` (nem `bool`, que deve ser rejeitado mesmo sendo subtipo de `int`), levante `TypeError`.
 - Se `origem` e `destino` forem iguais, a função deve simplesmente retornar `valor` sem conversão (sem levantar erro).
-- Observação sobre zero absoluto: Kelvin não admite valores negativos. Se `valor < 0` e `origem == "K"`, a função deve levantar `ValueError`, pois essa temperatura é fisicamente impossível.
+- Observação sobre a temperatura mínima: Existe um limite mínimo de temperatura possível fisicamente. Este valor é 0 para Kelvin, −273.15 para Celsius e −459.67 para Fahrenheit. A depender do sistema de origem, a função deve verificar o valor mínimo e levantar `ValueError` caso o valor passado esteja abaixo dele. 
+
 
 Exemplo de uso:
 ```python
@@ -274,6 +275,8 @@ converter_data("29/02/2023")  # levanta DataInvalidaError, 2023 não é bissexto
 
 Escrevam testes cobrindo um caso válido, um caso que gere ValueError e um caso que gere DataInvalidaError, incluindo pelo menos um teste de ano bissexto.
 
+> Tome cuidado com a [definição de ano bissexto](https://pt.wikipedia.org/wiki/Ano_bissexto)!
+
 # Exercício 9 - O Mistério da Mochila
 
 Você está desenvolvendo o sistema de inventário de um RPG. Cada personagem deveria ter sua própria mochila, mas os jogadores estão reclamando que os itens de um personagem estão aparecendo na mochila de outro, e às vezes duas mochilas parecem ser exatamente a mesma. Abaixo está o trecho de código responsável por isso. Sem executá-lo, analise-o com atenção e responda às perguntas a seguir.
@@ -292,7 +295,7 @@ mochila_guerreiro = equipar_item("espada", [])
 
 a) Qual é o conteúdo final de `mochila_arqueiro`, `mochila_mago` e `mochila_guerreiro` depois dessas quatro chamadas? Justifiquem a ordem dos itens em cada mochila, considerando a ordem em que as chamadas acontecem.
 
-b) A expressão `mochila_arqueiro is mochila_mago` resulta em True ou False? Expliquem o que essa comparação revela sobre os dois nomes, e por que `mochila_guerreiro` não sofre do mesmo problema.
+b) A expressão `mochila_arqueiro is mochila_mago` resulta em True ou False? Expliquem o que essa comparação revela sobre os dois nomes, e por que `mochila_guerreiro` não sofre do mesmo problema. ([Documentação do operador `is`](https://docs.python.org/pt-br/3/reference/expressions.html#is))
 
 c) Em que momento o valor padrão `[]` de `equipar_item` é criado, e por que ele persiste entre chamadas diferentes da função? Por que passar `[]` explicitamente na chamada de `mochila_guerreiro` evita o problema?
 
