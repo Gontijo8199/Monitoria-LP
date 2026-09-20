@@ -347,16 +347,25 @@ a) Determine, passo a passo (uma movimentação por vez), o valor exato retornad
 
 b) Para cada um dos casos de teste abaixo, indique se a função passa ou falha em relação ao resultado esperado, justificando com base no comportamento real do código:
 
-- **Teste 1:** mesma chamada do enunciado. Resultado esperado: a movimentação `("lapis", -5)` deve ser recusada, ou seja, `"erro:lapis"` aparece no log e o saldo de `"lapis"` continua sendo 3.
-- **Teste 2:** mesma chamada do enunciado. Resultado esperado: a saída `("caderno", -2)` deve ser recusada, e `"caderno"` não deve ser cadastrado no estoque.
-- **Teste 3:** `aplicar_movimentacoes({"caneta": 10}, [("caneta", "2")])`. Resultado esperado: a função deve levantar `TypeError`.
+- **Teste 1:** mesma chamada do enunciado. 
+Resultado esperado: a movimentação `("lapis", -5)` deve ser recusada, ou seja, `"erro:lapis"` aparece no log e o saldo de `"lapis"` continua sendo 3.
+
+- **Teste 2:** mesma chamada do enunciado. 
+Resultado esperado: a saída `("caderno", -2)` deve ser recusada, e `"caderno"` não deve ser cadastrado no estoque.
+
+- **Teste 3:** `aplicar_movimentacoes({"caneta": 10}, [("caneta", "2")])`. 
+Resultado esperado: a função deve levantar `TypeError`.
+
 - **Teste 4:**
   ```python
   original = {"caneta": 10}
   aplicar_movimentacoes(original, [("caneta", -3)])
   ```
   Resultado esperado: `original` continua igual a `{"caneta": 10}`.
-- **Teste 5:** `aplicar_movimentacoes({"caneta": 10}, [("caneta", -10)])`. Resultado esperado: log igual a `["ok:caneta"]` e estoque final igual a `{"caneta": 0}`.
+
+- **Teste 5:** `aplicar_movimentacoes({"caneta": 10}, [("caneta", -10)])`. 
+Resultado esperado: log igual a `["ok:caneta"]` e estoque final igual a `{"caneta": 0}`.
+
 
 c) Identifique os problemas existentes na implementação que explicam as falhas observadas no item anterior, e explique como cada um deveria ser corrigido.
 
