@@ -312,3 +312,52 @@ def equipar_item(item, mochila=None):
 ```
 
 Essa correção resolve o bug original? Existe algum caso de uso em que ela se comporta de forma diferente do esperado, mesmo sem levantar nenhum erro? Expliquem, considerando o que acontece quando alguém chama a função passando uma mochila que já existe, mas está vazia no momento da chamada.
+
+# Exercício 10 - Estoque de Papelaria
+
+Uma papelaria usa a função abaixo para aplicar as movimentações do dia ao seu estoque. Cada movimentação é uma tupla `(produto, quantidade)`, em que quantidade positiva é entrada e negativa é saída. Uma saída maior que o saldo disponível deve ser recusada e registrada no log como erro, sem interromper as demais movimentações. Os funcionários reclamam que o estoque às vezes fica com valores negativos e que erros de digitação somem sem deixar rastro. Sem executar o código, analise-o com atenção e responda às perguntas a seguir.
+
+```python
+def aplicar_movimentacoes(estoque, movimentacoes):
+    log = []
+    for produto, qtd in movimentacoes:
+        try:
+            estoque[produto] += qtd
+            log.append(f"ok:{produto}")
+        except KeyError:
+            estoque[produto] = qtd
+            log.append(f"novo:{produto}")
+        except Exception:
+            log.append(f"erro:{produto}")
+    return log
+
+
+estoque = {"caneta": 10, "lapis": 3}
+movs = [
+    ("caneta", -4),
+    ("lapis", -5),
+    ("borracha", 6),
+    ("caderno", -2),
+    ("caneta", "2"),
+]
+log = aplicar_movimentacoes(estoque, movs)
+```
+
+a) Determine, passo a passo (uma movimentação por vez), o valor exato retornado pela função e guardado em `log`. Em seguida, indique o conteúdo da variável `estoque` depois da chamada.
+
+b) Para cada um dos casos de teste abaixo, indique se a função passa ou falha em relação ao resultado esperado, justificando com base no comportamento real do código:
+
+- **Teste 1:** mesma chamada do enunciado. Resultado esperado: a movimentação `("lapis", -5)` deve ser recusada, ou seja, `"erro:lapis"` aparece no log e o saldo de `"lapis"` continua sendo 3.
+- **Teste 2:** mesma chamada do enunciado. Resultado esperado: a saída `("caderno", -2)` deve ser recusada, e `"caderno"` não deve ser cadastrado no estoque.
+- **Teste 3:** `aplicar_movimentacoes({"caneta": 10}, [("caneta", "2")])`. Resultado esperado: a função deve levantar `TypeError`.
+- **Teste 4:**
+  ```python
+  original = {"caneta": 10}
+  aplicar_movimentacoes(original, [("caneta", -3)])
+  ```
+  Resultado esperado: `original` continua igual a `{"caneta": 10}`.
+- **Teste 5:** `aplicar_movimentacoes({"caneta": 10}, [("caneta", -10)])`. Resultado esperado: log igual a `["ok:caneta"]` e estoque final igual a `{"caneta": 0}`.
+
+c) Identifique os problemas existentes na implementação que explicam as falhas observadas no item anterior, e explique como cada um deveria ser corrigido.
+
+d) Reescreva `aplicar_movimentacoes` corrigindo os problemas. Não use `except` genérico, não modifique o dicionário recebido e faça com que erros como `TypeError` não sejam silenciados. Inclua docstring (Google ou NumPy), type hints e ao menos 2 testes com `doctest`, `unittest` ou `pytest`.
