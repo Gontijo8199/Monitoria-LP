@@ -15,7 +15,7 @@ Esta pasta contém as listas aplicadas na matéria em 2024 e 2025. Além das lis
 - Lista 1 de 2026 [(lista de revisão A1)](./listas-2026/lista-1.md)
 
 ### Para a A2
-
+- Lista 2 de 2026 [(lista de revisão Numpy)](./listas-2026/lista-2.md)
 - Lista 2 de 2025
 - Lista 3 de 2025
 - Lista 4 de 2025
