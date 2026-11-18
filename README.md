@@ -19,8 +19,7 @@ Esta pasta contém as listas aplicadas na matéria em 2024 e 2025. Além das lis
 - Lista 2 de 2025
 - Lista 3 de 2025
 - Lista 4 de 2025
-- Lista de revisão A2 (a ser divulgada!)
-
+- Lista 3 de 2026 [(lista de revisão A2)](./listas-2026/lista-3.md)
 ## Entrega
 
 As listas não contam como nota, e sim como material de estudo. Para obter feedback e correção para uma lista:
