@@ -189,3 +189,33 @@ print(memoria)
 #  {"operacao": "multiplicar_3", "resultado_parcial": 21}, 
 #  {"operacao": "subtrair_1", "resultado_parcial": 20}]
 ```
+
+# Exercício 9 - Pipeline de Operações com Objetos
+
+Implemente a classe `Pipeline` para gerenciar uma sequência de operações matemáticas, permitindo que novas funções sejam adicionadas dinamicamente através de um decorador.
+
+**a)** Crie um construtor que inicializa uma lista vazia para armazenar as operações.
+
+**b)** Implemente o método registrar, que atuará como o decorador. Quando utilizado acima da definição de uma função, ele deve adicionar essa função à lista interna de operações da instância e retornar a própria função, inalterada.
+
+**c)** Implemente o método `aplicar(valor_inicial)`, que passa o `valor_inicial` pela primeira função registrada, repassa o resultado para a segunda, e assim por diante. Assim como no exercício anterior, este método deve retornar uma tupla contendo o resultado final e a memória de cálculo (uma lista de dicionários indicando o nome da operação aplicada e o valor resultante daquela etapa).
+
+Exemplo:
+```python
+processador = Pipeline()
+
+@processador.registrar
+def dobrar(x: float) -> float:
+    return x * 2
+
+@processador.registrar
+def subtrair_tres(x: float) -> float:
+    return x - 3
+
+resultado, memoria = processador.aplicar(5)
+
+print(resultado) # 7
+print(memoria) 
+# [{"operacao": "dobrar", "resultado_parcial": 10}, 
+#  {"operacao": "subtrair_tres", "resultado_parcial": 7}]
+```
