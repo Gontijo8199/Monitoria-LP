@@ -117,3 +117,105 @@ conta_b = ContaBancaria("002", "Bruno", 50)
 conta_a.transferir(conta_b, 30)print(conta_a.saldo, conta_b.saldo)  # 70, 80
 print(ContaBancaria.quantidade_contas())  # 2
 ```
+
+# Exercício 6 - Decorador de Cronômetro
+
+Implemente o decorador `@cronometrar` para calcular o tempo de execução de qualquer função utilizando o módulo `time`. Todas as vezes que a função decorada for chamada, o decorador deve fazer com que a mensagem `"Função '{nome_da_funcao}' executada em {tempo} ms"` seja impressa no terminal.
+
+Ele precisa suportar funções com qualquer quantidade de argumentos posicionais (`*args`) e nomeados (`**kwargs`), retornando corretamente o valor gerado pela função original. Além disso, garantar que a função decorada não perca seus metadados originais (como `__name__` e `__doc__`).
+
+Exemplo:
+
+```python
+@cronometrar
+def processar_dados(n: int) -> list:
+    return [i * 2 for i in range(n)]
+
+resultado = processar_dados(100000)
+
+# Saída no terminal: Função 'processar_dados' executada em 4.12 ms
+```
+
+
+# Exercício 7 - Logger de Execução com Controle de Colisão
+
+Sistemas complexos precisam registrar (logar) o que acontece em tempo de execução, mas é necessário cuidado para que diferentes processos não sobrescrevam os logs uns dos outros. Implemente um decorador `@registrar_log` que, a cada chamada da função decorada, adicione uma linha no arquivo `log_{nome_da_funcao}.log`.
+
+A linha deve seguir estritamente o formato: `[YYYY-MM-DD HH:MM:SS] função {nome_da_funcao} chamada com args {args} e kwargs {kwargs}, retornando {resultado}.` (utilize o módulo `datetime` para auxiliar na impressão do momento da execução).
+
+Para evitar colisões, o decorador deve manter um registro interno dos nomes das funções já decoradas durante a execução do programa. Se o decorador for aplicado a uma segunda função que possua o mesmo `__name__` de uma função já registrada, ele deve impedir a sua criação e parar o programa com uma `Exception` com a mensagem: `"Uma função com o nome '{nome}' já possui um logger ativo."`
+
+Exemplo:
+
+```python
+@registrar_log
+def calcular_imposto(valor: float) -> float:
+    return valor * 0.15
+
+@registrar_log
+def calcular_imposto(salario: float) -> float: # Deve levantar Exception aqui!
+    return salario * 0.27
+
+# Exemplo de chamada da função válida:
+calcular_imposto(100.0)
+calcular_imposto(valor=200.0)
+
+# Conteúdo que deve ser gerado no arquivo "log_calcular_imposto.log":
+# [2026-11-18 10:15:30] função calcular_imposto chamada com args (100.0,) e kwargs {}, retornando 15.0.
+# [2026-11-18 10:15:32] função calcular_imposto chamada com args () e kwargs {"valor": 200.0}, retornando 30.0.
+```
+
+# Exercício 8 - Pipeline de Operações e Fábricas de Funções
+
+Em ciência de dados, é comum aplicarmos uma sequência de transformações a um dado e manter o histórico dessas modificações. Também é comum reutilizar essas transformações em outros dados obtidos posteriormente ou em outras análises.
+
+a) Implemente a função `criar_pipeline(operacoes: list[callable]) -> callable`, que recebe uma lista de funções matemáticas simples (**que aceitam e retornam um único número**) e retorna uma nova função. A função retornada receberá um `valor_inicial` e, quando chamada, aplicará cada operação da lista em sequência, passando o resultado de uma como entrada para a próxima. A saída deve ser uma tupla contendo o resultado final e uma memória de cálculo (uma lista de dicionários indicando o nome da operação aplicada e o valor resultante daquela etapa).
+
+b) Implemente closures para gerar operações matemáticas genéricas fixando o segundo operando. Crie as funções `criar_somador(y: float)`, `criar_subtrator(y: float)`, `criar_multiplicador(y: float)` e `criar_divisor(y: float)`. Cada uma delas deve retornar uma nova função que recebe um único argumento `x` e realiza a respectiva operação matemática (x + y, x - y, x * y, x / y). Para que a memória de cálculo do item anterior fique clara, o atributo `__name__` de cada função retornada deve ser alterado internamente para refletir a operação e o valor (por exemplo, "somar_2", "multiplicar_3", "dividir_4").
+
+Exemplo:
+
+```python
+somar_2 = criar_somador(2)
+multiplicar_3 = criar_multiplicador(3)
+subtrair_1 = criar_subtrator(1)
+
+meu_pipeline = criar_pipeline([somar_2, multiplicar_3, subtrair_1])
+resultado, memoria = meu_pipeline(5)
+
+print(resultado) # 20
+print(memoria) 
+# [{"operacao": "somar_2", "resultado_parcial": 7}, 
+#  {"operacao": "multiplicar_3", "resultado_parcial": 21}, 
+#  {"operacao": "subtrair_1", "resultado_parcial": 20}]
+```
+
+# Exercício 9 - Pipeline de Operações com Objetos
+
+Implemente a classe `Pipeline` para gerenciar uma sequência de operações matemáticas, permitindo que novas funções sejam adicionadas dinamicamente através de um decorador.
+
+**a)** Crie um construtor que inicializa uma lista vazia para armazenar as operações.
+
+**b)** Implemente o método registrar, que atuará como o decorador. Quando utilizado acima da definição de uma função, ele deve adicionar essa função à lista interna de operações da instância e retornar a própria função, inalterada.
+
+**c)** Implemente o método `aplicar(valor_inicial)`, que passa o `valor_inicial` pela primeira função registrada, repassa o resultado para a segunda, e assim por diante. Assim como no exercício anterior, este método deve retornar uma tupla contendo o resultado final e a memória de cálculo (uma lista de dicionários indicando o nome da operação aplicada e o valor resultante daquela etapa).
+
+Exemplo:
+```python
+processador = Pipeline()
+
+@processador.registrar
+def dobrar(x: float) -> float:
+    return x * 2
+
+@processador.registrar
+def subtrair_tres(x: float) -> float:
+    return x - 3
+
+resultado, memoria = processador.aplicar(5)
+
+print(resultado) # 7
+print(memoria) 
+# [{"operacao": "dobrar", "resultado_parcial": 10}, 
+#  {"operacao": "subtrair_tres", "resultado_parcial": 7}]
+```
